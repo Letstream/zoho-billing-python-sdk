@@ -39,7 +39,9 @@ jobs:
             sed -i "s/license=.*/license='MIT',/g" "$d/setup.py"
           fi
           if [ -f "$d/pyproject.toml" ]; then
-            sed -i "s/^authors = .*/authors = ['Letstream <support@theletstream.com>']/g" "$d/pyproject.toml"
+            # Replace the authors block (multi-line)
+            sed -i "/^authors = \\[/,/^\\]/c\\authors = [\\n  {name = 'Letstream', email = 'support@theletstream.com'},\\n]" "$d/pyproject.toml"
+            # Replace the license line
             sed -i "s/^license = .*/license = 'MIT'/g" "$d/pyproject.toml"
           fi
         done
