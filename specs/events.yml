@@ -1,0 +1,318 @@
+openapi: 3.0.0
+info:
+  title: Events
+  description: 'Events can be used to let you know when something happens in your organization. Every happening in your organization will be recorded as a new Event. For example, when a new payment is received, we will create a <code>payment_thankyou</code> event; when a subscription is created, we will create a <code>subscription_created</code> event.<br/> <br/>You can retrieve these events individually or as a <a href="https://www.zoho.com/billing/api/v1/events/#list-of-events">list</a> using our API. If you want to update the data on your server when an event occurs, you can use webhooks to send these event objects directly to an endpoint on your application’s server. Learn more about <a href="https://www.zoho.com/billing/help/settings/automation.html">webhooks</a>.<br/><br/>'
+  contact: {}
+  version: 1.0.0
+servers:
+  -
+    url: 'https://www.zohoapis.com/billing/v1'
+    description: 'API Endpoint'
+tags:
+  -
+    name: events
+    description: 'Events Module'
+x-additionalInfo:
+  'Event Types':
+    description: '<p>The following are the list of events that Zoho Billing currently supports.</p><p> <i>Note&#58;</i> For backdated subscriptions, events will not be created for any actions that occur in a date previous than the current date. </p>'
+    attributesTitle: Events
+    type: object
+    hideExample: true
+    properties:
+      subscription_created:
+        $ref: '#/components/schemas/subscription_created'
+      trial_expiring:
+        $ref: '#/components/schemas/trial_expiring'
+      subscription_activation:
+        $ref: '#/components/schemas/subscription_activation'
+      subscription_ahead:
+        $ref: '#/components/schemas/subscription_ahead'
+      subscription_renewed:
+        $ref: '#/components/schemas/subscription_renewed'
+      billing_date_changed:
+        $ref: '#/components/schemas/billing_date_changed'
+      subscription_upgraded:
+        $ref: '#/components/schemas/subscription_upgraded'
+      subscription_downgraded:
+        $ref: '#/components/schemas/subscription_downgraded'
+      subscription_unpaid:
+        $ref: '#/components/schemas/subscription_unpaid'
+      subscription_cancelled:
+        $ref: '#/components/schemas/subscription_cancelled'
+      subscription_reactivated:
+        $ref: '#/components/schemas/subscription_reactivated'
+      subscription_cancellation_scheduled:
+        $ref: '#/components/schemas/subscription_cancellation_scheduled'
+      subscription_move_to_free_scheduled:
+        $ref: '#/components/schemas/subscription_move_to_free_scheduled'
+      subscription_expiring:
+        $ref: '#/components/schemas/subscription_expiring'
+      subscription_expired:
+        $ref: '#/components/schemas/subscription_expired'
+      subscription_deleted:
+        $ref: '#/components/schemas/subscription_deleted'
+      invoice_created:
+        $ref: '#/components/schemas/invoice_created'
+      creditnote_added:
+        $ref: '#/components/schemas/creditnote_added'
+      payment_thankyou:
+        $ref: '#/components/schemas/payment_thankyou'
+      payment_refunded:
+        $ref: '#/components/schemas/payment_refunded'
+      payment_declined:
+        $ref: '#/components/schemas/payment_declined'
+      card_expired:
+        $ref: '#/components/schemas/card_expired'
+      card_expiring:
+        $ref: '#/components/schemas/card_expiring'
+      card_deleted:
+        $ref: '#/components/schemas/card_deleted'
+paths:
+  '/events/{event_id}':
+    get:
+      tags:
+        - events
+      summary: 'Retrieve an event'
+      description: 'Details of an existing event.'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/retrieve-an-event-response'
+      deprecated: false
+      security:
+        -
+          Zoho_Auth:
+            - ZohoSubscriptions.webhooks.READ
+    parameters:
+      -
+        name: event_id
+        in: path
+        required: true
+        schema:
+          type: string
+        example: '90300000005337'
+      -
+        $ref: '#/components/parameters/organization_id'
+  /events:
+    get:
+      tags:
+        - events
+      summary: 'List of events'
+      description: 'List of all events.'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/list-of-events-response'
+      deprecated: false
+      security:
+        -
+          Zoho_Auth:
+            - ZohoSubscriptions.webhooks.READ
+    parameters:
+      -
+        $ref: '#/components/parameters/organization_id'
+components:
+  parameters:
+    organization_id:
+      name: X-com-zoho-subscriptions-organizationid
+      description: 'ID of the organization'
+      in: header
+      required: true
+      schema:
+        type: string
+      example: '10234695'
+  schemas:
+    gendoc-attributes-schema:
+      $ref: '#/components/schemas/event-response'
+    event-response:
+      type: object
+      properties:
+        event_id:
+          $ref: '#/components/schemas/event_id'
+        event_type:
+          $ref: '#/components/schemas/event_type'
+        event_time:
+          $ref: '#/components/schemas/event_time'
+        payload:
+          $ref: '#/components/schemas/payload'
+        webhooks:
+          description: 'List of objects holds information about the webhooks. Each object contains <code>webhook_id</code>, <code>url</code>, <code>status</code> and <code>last_updated_time</code>.'
+          type: array
+          items:
+            type: object
+            properties:
+              webhook_id:
+                $ref: '#/components/schemas/webhook_id'
+              url:
+                $ref: '#/components/schemas/url'
+              status:
+                $ref: '#/components/schemas/status'
+              last_updated_time:
+                $ref: '#/components/schemas/last_updated_time'
+    event_id:
+      description: 'Unique ID generated for a particular event'
+      type: string
+      example: '90300000005337'
+    event_type:
+      description: 'The type of event.'
+      type: string
+      example: subscription_activation
+    event_time:
+      description: 'The time at which the event is created.'
+      type: string
+      example: '2016-06-05T18:28:20-0700'
+    payload:
+      description: 'Holds information about the event that occurred.'
+      type: string
+      example: '{...}'
+    webhooks:
+      description: 'List of objects holds information about the webhooks. Each object contains <code>webhook_id</code>, <code>url</code>, <code>status</code> and <code>last_updated_time</code>.'
+      type: array
+      items:
+        type: object
+        properties:
+          webhook_id:
+            $ref: '#/components/schemas/webhook_id'
+          url:
+            $ref: '#/components/schemas/url'
+          status:
+            $ref: '#/components/schemas/status'
+          last_updated_time:
+            $ref: '#/components/schemas/last_updated_time'
+    webhook_id:
+      description: 'The unique ID generated for a webhook by the server. This can be used as an identifier.'
+      type: string
+      example: '9030000020202'
+    url:
+      description: 'The URL for which the webhook is sent.'
+      type: string
+      example: 'http://gatehost/webhooks/newsubscription/add'
+    status:
+      description: 'Status of the webhook. This can be <code>success</code>, <code>scheduled</code> or <code>failure</code>.'
+      type: string
+      example: success
+    last_updated_time:
+      description: 'The time at which the webhook was last sent.'
+      type: string
+      example: '2016-07-01T20:28:20-0700'
+    subscription_created:
+      type: string
+      description: 'Triggered when a subscription is created'
+    trial_expiring:
+      type: string
+      description: 'Triggered 3 days before when a subscription trial is about to expire'
+    subscription_activation:
+      type: string
+      description: 'Triggered when a subscription gets to Live state'
+    subscription_ahead:
+      type: string
+      description: 'Triggered 3 days before a subscription is about to renew'
+    subscription_renewed:
+      type: string
+      description: 'Triggered when a subscription is renewed'
+    billing_date_changed:
+      type: string
+      description: 'Triggered when the billing date for a subscription is changed'
+    subscription_upgraded:
+      type: string
+      description: 'Triggered when a subscription plan is upgraded from a lower to a higher plan'
+    subscription_downgraded:
+      type: string
+      description: 'Triggered when a subscription plan is downgraded from a higher to a lower plan'
+    subscription_unpaid:
+      type: string
+      description: 'Triggered when a subscription is marked as unpaid.'
+    subscription_cancelled:
+      type: string
+      description: 'Triggers when a subscription is cancelled.'
+    subscription_reactivated:
+      type: string
+      description: 'Triggered when a subscription is reactivated from the cancelled state.'
+    subscription_cancellation_scheduled:
+      type: string
+      description: 'Triggers when a subscription is chose to cancel at the next renewal.'
+    subscription_move_to_free_scheduled:
+      type: string
+      description: 'Triggers when a subscription is chosen to move to free plan at the next renewal.'
+    subscription_expiring:
+      type: string
+      description: 'Triggered 3 days before a subscriptions is about expire'
+    subscription_expired:
+      type: string
+      description: 'Triggers when a subscription is expired'
+    subscription_deleted:
+      type: string
+      description: 'Triggers when a subscription is deleted'
+    invoice_created:
+      type: string
+      description: 'Triggers when an invoice is raised'
+    creditnote_added:
+      type: string
+      description: 'Triggers when a credit note is added'
+    payment_thankyou:
+      type: string
+      description: 'Triggers when a payment for an invoice is recieved'
+    payment_refunded:
+      type: string
+      description: 'Triggers when a payment is refunded'
+    payment_declined:
+      type: string
+      description: 'Triggers when a payment for an invoice fails'
+    card_expired:
+      type: string
+      description: 'Triggers when a customer card is expired'
+    card_expiring:
+      type: string
+      description: 'Triggered 15 days before a customer card expires'
+    card_deleted:
+      type: string
+      description: 'Triggered when a customer card is deleted'
+    retrieve-an-event-response:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 0
+          readOnly: true
+        message:
+          type: string
+          example: success
+          readOnly: true
+        event:
+          $ref: '#/components/schemas/event-response'
+    list-of-events-response:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 0
+          readOnly: true
+        message:
+          type: string
+          example: success
+          readOnly: true
+        events:
+          type: array
+          items:
+            type: object
+            properties:
+              event_id:
+                $ref: '#/components/schemas/event_id'
+              event_type:
+                $ref: '#/components/schemas/event_type'
+              event_time:
+                $ref: '#/components/schemas/event_time'
+  securitySchemes:
+    Zoho_Auth:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: 'https://accounts.zoho.com/oauth/v2/auth'
+          scopes:
+            ZohoSubscriptions.webhooks.READ: 'Read Webhooks'
