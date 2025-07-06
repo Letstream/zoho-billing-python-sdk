@@ -19,7 +19,7 @@ jobs:
         for spec in specs/*.yml; do
           name=$(basename "$spec" .yml)
           outdir="python-client-$name"
-          pkgname="ls_zoho_billing_${name//-/_}"
+          pkgname="ls_zoho_billing_$(echo "$name" | tr '-' '_')"
           openapi-generator-cli generate \
             -g python \
             -i "$spec" \
