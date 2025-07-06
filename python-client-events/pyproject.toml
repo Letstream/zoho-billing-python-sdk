@@ -2,8 +2,8 @@
 name = "ls_zoho_billing_events"
 version = "1.0.0"
 description = "Events"
-authors = ['Letstream <support@theletstream.com>']
-  {name = "OpenAPI Generator Community",email = "team@openapitools.org"},
+authors = [
+  {name = 'Letstream', email = 'support@theletstream.com'},
 ]
 license = 'MIT'
 readme = "README.md"
