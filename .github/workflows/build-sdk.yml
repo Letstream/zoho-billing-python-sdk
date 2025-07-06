@@ -21,7 +21,7 @@ jobs:
           name=$(basename "$spec" .yml)
           outdir="python-client-$name"
           pkgname="ls_zoho_billing_$(echo "$name" | tr '-' '_')"
-          desc="Python client for Zoho Billing ($name)"
+          desc="Python client for Zoho Billing \($name\)"
           openapi-generator-cli generate \
             -g python \
             -i "$spec" \
