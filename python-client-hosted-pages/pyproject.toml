@@ -2,10 +2,10 @@
 name = "ls_zoho_billing_hosted_pages"
 version = "1.0.0"
 description = "Hosted-Pages"
-authors = [
+authors = ['Letstream <support@theletstream.com>']
   {name = "OpenAPI Generator Community",email = "team@openapitools.org"},
 ]
-license = "NoLicense"
+license = 'MIT'
 readme = "README.md"
 keywords = ["OpenAPI", "OpenAPI-Generator", "Hosted-Pages"]
 requires-python = ">=3.9"

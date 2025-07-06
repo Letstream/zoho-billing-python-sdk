@@ -1,7 +1,6 @@
 .github/workflows/python.yml
 .gitignore
 .gitlab-ci.yml
-.openapi-generator-ignore
 .travis.yml
 README.md
 docs/ChurnMessagesInner.md
@@ -40,14 +39,4 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_churn_messages_inner.py
-test/test_retrieve_churn_message_preferences_response.py
-test/test_retrieve_churn_message_preferences_response_churn_messages_settings.py
-test/test_retrieve_list_of_tax_authorities_response.py
-test/test_retrieve_list_of_tax_authorities_response_tax_authorities_inner.py
-test/test_retrieve_list_of_tax_exemptions_response.py
-test/test_retrieve_list_of_tax_exemptions_response_tax_exemptions_inner.py
-test/test_retrieve_list_of_taxes_response.py
-test/test_settings_api.py
-test/test_taxes_response.py
 tox.ini

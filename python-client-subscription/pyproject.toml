@@ -2,10 +2,10 @@
 name = "ls_zoho_billing_subscription"
 version = "1.0.0"
 description = "Subscriptions"
-authors = [
+authors = ['Letstream <support@theletstream.com>']
   {name = "OpenAPI Generator Community",email = "team@openapitools.org"},
 ]
-license = "NoLicense"
+license = 'MIT'
 readme = "README.md"
 keywords = ["OpenAPI", "OpenAPI-Generator", "Subscriptions"]
 requires-python = ">=3.9"

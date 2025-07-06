@@ -1,7 +1,6 @@
 .github/workflows/python.yml
 .gitignore
 .gitlab-ci.yml
-.openapi-generator-ignore
 .travis.yml
 README.md
 docs/EventResponse.md
@@ -32,10 +31,4 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_event_response.py
-test/test_event_response_webhooks_inner.py
-test/test_events_api.py
-test/test_list_of_events_response.py
-test/test_list_of_events_response_events_inner.py
-test/test_retrieve_an_event_response.py
 tox.ini

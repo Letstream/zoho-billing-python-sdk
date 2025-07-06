@@ -1,7 +1,6 @@
 .github/workflows/python.yml
 .gitignore
 .gitlab-ci.yml
-.openapi-generator-ignore
 .travis.yml
 README.md
 docs/Autotransaction.md
@@ -44,16 +43,4 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_autotransaction.py
-test/test_creditnote.py
-test/test_refund_a_credit_note_request.py
-test/test_refund_a_credit_note_response.py
-test/test_refund_a_payment_request.py
-test/test_refund_a_payment_response.py
-test/test_refund_a_payment_response_refund.py
-test/test_refund_response.py
-test/test_refund_response_autotransaction.py
-test/test_refund_response_creditnote.py
-test/test_refunds_api.py
-test/test_retrieve_refund_details_response.py
 tox.ini

@@ -1,7 +1,6 @@
 .github/workflows/python.yml
 .gitignore
 .gitlab-ci.yml
-.openapi-generator-ignore
 .travis.yml
 README.md
 docs/AddATaskRequest.md
@@ -42,15 +41,4 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_add_a_task_request.py
-test/test_add_a_task_response.py
-test/test_delete_a_task_response.py
-test/test_get_a_task_response.py
-test/test_get_a_task_response_task.py
-test/test_list_tasks_response.py
-test/test_list_tasks_response_tasks_inner.py
-test/test_task_response.py
-test/test_tasks_api.py
-test/test_update_a_task_request.py
-test/test_update_a_task_response.py
 tox.ini

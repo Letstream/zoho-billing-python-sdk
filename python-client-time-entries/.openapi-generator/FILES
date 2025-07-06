@@ -1,7 +1,6 @@
 .github/workflows/python.yml
 .gitignore
 .gitlab-ci.yml
-.openapi-generator-ignore
 .travis.yml
 README.md
 docs/DeleteTimeEntriesResponse.md
@@ -50,19 +49,4 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_delete_time_entries_response.py
-test/test_delete_time_entry_response.py
-test/test_get_a_time_entry_response.py
-test/test_get_timer_response.py
-test/test_list_time_entries_response.py
-test/test_list_time_entries_response_time_entries_inner.py
-test/test_log_time_entries_request.py
-test/test_log_time_entries_response.py
-test/test_start_timer_response.py
-test/test_stop_timer_response.py
-test/test_time_entries_api.py
-test/test_time_entry_response.py
-test/test_update_time_entry_request.py
-test/test_update_time_entry_response.py
-test/test_update_time_entry_response_time_entry.py
 tox.ini

@@ -2,10 +2,10 @@
 name = "ls_zoho_billing_refunds"
 version = "1.0.0"
 description = "Refunds"
-authors = [
+authors = ['Letstream <support@theletstream.com>']
   {name = "OpenAPI Generator Community",email = "team@openapitools.org"},
 ]
-license = "NoLicense"
+license = 'MIT'
 readme = "README.md"
 keywords = ["OpenAPI", "OpenAPI-Generator", "Refunds"]
 requires-python = ">=3.9"

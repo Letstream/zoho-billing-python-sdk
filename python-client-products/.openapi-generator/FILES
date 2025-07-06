@@ -1,7 +1,6 @@
 .github/workflows/python.yml
 .gitignore
 .gitlab-ci.yml
-.openapi-generator-ignore
 .travis.yml
 README.md
 docs/CreateAProductRequest.md
@@ -44,16 +43,4 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_create_a_product_request.py
-test/test_create_a_product_response.py
-test/test_delete_a_product_response.py
-test/test_list_of_all_products_response.py
-test/test_list_of_all_products_response_products_inner.py
-test/test_mark_as_active_response.py
-test/test_mark_as_inactive_response.py
-test/test_product_response.py
-test/test_products_api.py
-test/test_retrieve_a_product_response.py
-test/test_update_a_product_request.py
-test/test_update_a_product_response.py
 tox.ini

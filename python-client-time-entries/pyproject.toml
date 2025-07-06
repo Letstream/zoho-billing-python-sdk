@@ -2,10 +2,10 @@
 name = "ls_zoho_billing_time_entries"
 version = "1.0.0"
 description = "Time Entries"
-authors = [
+authors = ['Letstream <support@theletstream.com>']
   {name = "OpenAPI Generator Community",email = "team@openapitools.org"},
 ]
-license = "NoLicense"
+license = 'MIT'
 readme = "README.md"
 keywords = ["OpenAPI", "OpenAPI-Generator", "Time Entries"]
 requires-python = ">=3.9"
