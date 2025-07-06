@@ -15,6 +15,7 @@ jobs:
       run: npm install -g @openapitools/openapi-generator-cli
 
     - name: Generate clients for each spec
+      shell: bash
       run: |
         for spec in specs/*.yml; do
           name=$(basename "$spec" .yml)
