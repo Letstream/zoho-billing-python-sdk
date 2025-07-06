@@ -11,33 +11,26 @@ jobs:
       with:
         python-version: 3.11
 
-    - name: Install swagger-cli
-      run: npm install -g swagger-cli
+    - name: Install OpenAPI Generator CLI
+      run: npm install -g @openapitools/openapi-generator-cli
 
-    - name: Merge OpenAPI specs
+    - name: Generate clients for each spec
       run: |
-        swagger-cli bundle specs/*.yml -o specs/openapi.yaml
+        for spec in specs/*.yml; do
+          name=$(basename "$spec" .yml)
+          outdir="python-client-$name"
+          pkgname="ls_zoho_billing_${name//-/_}"
+          openapi-generator-cli generate \
+            -g python \
+            -i "$spec" \
+            -o "$outdir" \
+            --additional-properties "packageName=$pkgname,projectName=$pkgname,packageVersion=1.0.0,packageDescription=Python client for Zoho Billing ($name),packageAuthor=Letstream,packageAuthorEmail=support@theletstream.com,packageUrl=https://www.theletstream.com?utm_source=github-zohobillingclient,licenseName=MIT,hideGenerationTimestamp=true"
+        done
 
-    - name: Generate unified client
-      uses: openapi-generators/openapitools-generator-action@v1
-      with:
-        generator: python
-        openapi-file: ./specs/openapi.yaml
-        additional-properties: |
-          packageName=ls_zoho_billing,
-          projectName=ls-zoho-billing,
-          packageVersion=1.0.0,
-          packageDescription="Python client for Zoho Billing",
-          packageAuthor="Letstream",
-          packageAuthorEmail=support@theletstream.com,
-          packageUrl="https://www.theletstream.com?utm_source=github-zohobillingclient",
-          licenseName=MIT,
-          hideGenerationTimestamp=true
-
-    - name: Commit new client
+    - name: Commit new clients
       run: |
         git config --global user.name 'Letstream Bot'
         git config --global user.email 'support@theletstream.com'
-        git add python-client/
-        git commit -am "Update python client"
+        git add python-client-*/
+        git commit -am "Update python clients"
         git push
