@@ -21,11 +21,12 @@ jobs:
           name=$(basename "$spec" .yml)
           outdir="python-client-$name"
           pkgname="ls_zoho_billing_$(echo "$name" | tr '-' '_')"
+          desc="Python client for Zoho Billing ($name)"
           openapi-generator-cli generate \
             -g python \
             -i "$spec" \
             -o "$outdir" \
-            --additional-properties "packageName=$pkgname,projectName=$pkgname,packageVersion=1.0.0,packageDescription=Python client for Zoho Billing \($name\),packageAuthor=Letstream,packageAuthorEmail=support@theletstream.com,packageUrl=https://www.theletstream.com?utm_source=github-zohobillingclient,licenseName=MIT,hideGenerationTimestamp=true"
+            --additional-properties "packageName=$pkgname,projectName=$pkgname,packageVersion=1.0.0,packageDescription=$desc,packageAuthor=Letstream,packageAuthorEmail=support@theletstream.com,packageUrl=https://www.theletstream.com?utm_source=github-zohobillingclient,licenseName=MIT,hideGenerationTimestamp=true"
         done
 
     - name: Commit new clients
