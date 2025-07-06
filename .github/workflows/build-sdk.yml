@@ -29,6 +29,21 @@ jobs:
             --additional-properties "packageName=$pkgname,projectName=$pkgname,packageVersion=1.0.0,packageDescription='$desc',packageAuthor=Letstream,packageAuthorEmail=support@theletstream.com,packageUrl=https://www.theletstream.com?utm_source=github-zohobillingclient,licenseName=MIT,hideGenerationTimestamp=true"
         done
 
+    - name: Patch author and license in setup.py and pyproject.toml
+      shell: bash
+      run: |
+        for d in python-client-*; do
+          if [ -f "$d/setup.py" ]; then
+            sed -i "s/author=.*/author='Letstream',/g" "$d/setup.py"
+            sed -i "s/author_email=.*/author_email='support@theletstream.com',/g" "$d/setup.py"
+            sed -i "s/license=.*/license='MIT',/g" "$d/setup.py"
+          fi
+          if [ -f "$d/pyproject.toml" ]; then
+            sed -i "s/^authors = .*/authors = ['Letstream <support@theletstream.com>']/g" "$d/pyproject.toml"
+            sed -i "s/^license = .*/license = 'MIT'/g" "$d/pyproject.toml"
+          fi
+        done
+
     - name: Commit new clients
       run: |
         git config --global user.name 'Letstream Bot'
